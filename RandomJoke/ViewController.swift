@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+  
+  @IBOutlet weak var jokeLabel: UILabel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,7 +18,14 @@ class ViewController: UIViewController {
   }
   
   @IBAction func buttonTapped() {
-    APIManager().getRandomJokeAlamofire()
+    APIManager().getRandomJoke { [weak self] (joke) in
+      DispatchQueue.main.sync {
+        guard let joke = joke else {
+          return
+        }
+        self?.jokeLabel.text = joke.value
+      }
+    }
   }
 
 }

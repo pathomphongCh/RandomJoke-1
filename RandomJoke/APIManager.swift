@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 class APIManager {
-  func getRandomJoke() {
+  func getRandomJoke(completion: @escaping (Joke?) -> Void) {
     guard let url = URL(string: "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random") else {
       return
     }
@@ -18,10 +18,18 @@ class APIManager {
     request.httpMethod = "GET"
     request.setValue("d7cd140d6emsh9d6e2be744bfd51p13f344jsn471a4d8ce9d5", forHTTPHeaderField: "x-rapidapi-key")
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-      if let error = error {
-        print(error.localizedDescription)
-      } else if let data = data {
-        print(data)
+      if let _ = error {
+        print("error")
+      } else if let data = data, let response = response as? HTTPURLResponse {
+        if response.statusCode == 200 {
+          do {
+            let joke = try JSONDecoder().decode(Joke.self, from: data)
+            print(joke)
+            completion(joke)
+          } catch {
+            print("parse JSON failed")
+          }
+        }
       }
     }
     task.resume()
