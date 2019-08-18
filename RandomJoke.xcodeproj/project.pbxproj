@@ -128,6 +128,7 @@
 		BF3AD30122FC00E2003881FB /* RandomJoke */ = {
 			isa = PBXGroup;
 			children = (
+				BF3AD33422FC24ED003881FB /* Joke.swift */,
 				BF3AD30222FC00E2003881FB /* AppDelegate.swift */,
 				BF3AD30422FC00E2003881FB /* ViewController.swift */,
 				BF3AD30622FC00E2003881FB /* Main.storyboard */,
@@ -135,7 +136,6 @@
 				BF3AD30B22FC00E3003881FB /* LaunchScreen.storyboard */,
 				BF3AD30E22FC00E3003881FB /* Info.plist */,
 				BF3AD33222FC12E2003881FB /* APIManager.swift */,
-				BF3AD33422FC24ED003881FB /* Joke.swift */,
 			);
 			path = RandomJoke;
 			sourceTree = "<group>";

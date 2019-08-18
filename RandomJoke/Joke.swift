@@ -33,3 +33,7 @@ struct Joke: Codable { // Codable = Encodable + Decodable
     case iconURL = "icon_url"
   }
 }
+
+
+
+
